@@ -20,15 +20,13 @@ self.addEventListener('activate', (ev: ExtendableEvent) => {
 
 self.addEventListener('fetch', (ev: FetchEvent) => {
   ev.respondWith(
-    queue.add(() => onFetch(ev.request), {
-      throwOnTimeout: true,
-    }),
+    onFetch(ev.request)
   );
 });
 
 async function onFetch(request: Request): Promise<Response> {
   // サーバーの負荷を分散するために Jitter 処理をいれる
-  await jitter();
+  // await jitter();
 
   const res = await fetch(request);
 
