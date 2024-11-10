@@ -75,10 +75,10 @@ export function isContains({ query, target }: Params): boolean {
     ["ん", "ン", "ﾝ"],
   ]
   for (const char of chars) {
-    query.replace(char[1], char[0]);
-    query.replace(char[2], char[0]);
-    target.replace(char[1], char[0]);
-    target.replace(char[2], char[0]);
+    query.replace(char[1] as string, char[0] as string);
+    query.replace(char[2] as string, char[0] as string);
+    target.replace(char[1] as string, char[0] as string);
+    target.replace(char[2] as string, char[0] as string);
   }
   return target.includes(query);
 }
