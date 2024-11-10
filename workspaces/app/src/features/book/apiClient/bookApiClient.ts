@@ -15,8 +15,10 @@ type BookApiClient = DomainSpecificApiClientInterface<{
 
 export const bookApiClient: BookApiClient = {
   fetch: async ({ params }) => {
-    const response = await apiClient.get<GetBookResponse>(inject('/api/v1/books/:bookId', params));
-    return response.data;
+    // const response = await apiClient.get<GetBookResponse>(inject('/api/v1/books/:bookId', params));
+    // return response.data;
+    const res = await bookApiClient.fetchList({query: {}});
+    return res.find((e) => e.id === params.bookId)!;
   },
   fetch$$key: (options) => ({
     requestUrl: `/api/v1/books/:bookId`,
